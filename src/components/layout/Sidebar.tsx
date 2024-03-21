@@ -1,14 +1,18 @@
-import React from 'react'
+"use client"
+import React, { useState, useEffect} from 'react'
+import { useAppSelector } from "@/lib/hook";
 
 const Sidebar = () => {
+    const isSidebarOpened =  useAppSelector(state=> state.ui.sidebarOpen)
+    const [isSidebarOpen, setIsSidebarOpen] = useState(isSidebarOpened)
+
+    useEffect(() => {
+        setIsSidebarOpen(isSidebarOpened);
+    }, [isSidebarOpened]);
+
     return (
         <>
-
-            <button className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-                {/*hamburger svg here */}
-            </button>
-
-            <aside className="fixed top-0 left-0 z-40 w-60 h-screen transition-transform -translate-x-full sm:translate-x-0" >
+            <aside className={`fixed w-60 h-full  transition-transform  ${isSidebarOpen ? '' : '-translate-x-full'} sm:translate-x-0`}>
                 <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
                     <a href="#" className="flex items-center ps-2.5 mb-5">
                         <img src="" className="h-6 me-3 sm:h-7" alt="Logo" />

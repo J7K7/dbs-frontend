@@ -1,7 +1,7 @@
 import "../styles/globals.css";
-import Sidebar from "@/components/layout/Sidebar";
-import Navbar from "@/components/layout/Navbar";
+import 'react-toastify/dist/ReactToastify.css';
 import StoreProvider from "./StoreProvider";
+import { ToastContainer } from "react-toastify";
 
 export default function RootLayout({
   children,
@@ -11,21 +11,12 @@ export default function RootLayout({
 ) {
   return (
     <StoreProvider>
-    <html lang="en">
-      <body>
-        <div className="flex h-screen">
-            <Sidebar  />
-
-          <div className="sm:pl-60 flex flex-col flex-grow">
-            <Navbar />
-            <div className="pt-16 overflow-y-auto flex-grow">
+        <html lang="en">
+          <body>
+            <ToastContainer />
             {children}
-            </div>
-
-          </div>
-        </div>
-      </body>
-    </html>
+          </body>
+        </html>
     </StoreProvider>
   );
 }

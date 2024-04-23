@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect} from 'react'
 import { useAppSelector } from "@/lib/hook";
+import Link from 'next/link';
 
 const Sidebar = () => {
     const isSidebarOpened =  useAppSelector(state=> state.ui.sidebarOpen)
@@ -12,50 +13,18 @@ const Sidebar = () => {
 
     return (
         <>
-            <aside className={`fixed w-60 h-full  transition-transform  ${isSidebarOpen ? '' : '-translate-x-full'} sm:translate-x-0`}>
-                <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-                    <a href="#" className="flex items-center ps-2.5 mb-5">
-                        <img src="" className="h-6 me-3 sm:h-7" alt="Logo" />
-                        <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">DBS</span>
-                    </a>
+            <aside className={`mt-16 fixed left-0 h-screen w-64 z-20  transition-transform  ${isSidebarOpen ? '' : '-translate-x-full'} sm:translate-x-0`}>
+                <div className="h-full px-3 py-4 overflow-y-auto bg-accent-300 text-text-100">
                     <ul className="space-y-2 font-medium">
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                {/* put maybe icons here */}
+                            <Link href="/dashboard" className="flex items-center p-2 text-bkg-100 rounded-lg  hover:bg-accent-100 hover:text-text-200  group">
                                 <span className="ms-3">Dashboard</span>
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-
-                                <span className="flex-1 ms-3 whitespace-nowrap">Kanban</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-
-                                <span className="flex-1 ms-3 whitespace-nowrap">Inbox</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                <span className="flex-1 ms-3 whitespace-nowrap">Users</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <Link href="/product" className="flex items-center p-2 text-bkg-100 rounded-lg  hover:bg-accent-100 hover:text-text-200">
                                 <span className="flex-1 ms-3 whitespace-nowrap">Products</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                <span className="flex-1 ms-3 whitespace-nowrap">Sign In</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                <span className="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

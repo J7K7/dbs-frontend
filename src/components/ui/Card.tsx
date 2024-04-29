@@ -1,10 +1,12 @@
 import React from 'react'
+import { imageURL } from '@/utils/common/common';
 
 function Card({product, onClick} : any) {
     const { images , productName, productDescription, features } = product;
     // const imageSrc = ``
     // console.log("product imagePath",images[0]?.imagePath)
-    const imageSrc = `http://localhost:3000/images/${images[0]?.imagePath}`
+    // const imageSrc = `http://localhost:3000/images/${images[0]?.imagePath}`
+    const imageSrc = imageURL(images[0]?.imagePath)
     return (
         <div className="w-[18rem] bg-white shadow-lg rounded-lg overflow-hidden m-4 hover:scale-105 hover:cursor-pointer hover:shadow-xl hover:outline-2 hover:outline-gray-900"
         onClick={onClick}

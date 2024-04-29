@@ -1,5 +1,9 @@
 
+// const imageSrc = `http://localhost:3000/images/${images[0]?.imagePath}`
 
+export const imageURL = (imageName : string) => {
+    return `http://localhost:3000/images/${imageName}`
+}
 
 
 

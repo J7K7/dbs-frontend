@@ -128,7 +128,7 @@ export default function Features({ params } : { params : {productId : string}}) 
                 <> 
                 <h1>Product Features for ProductId: {params.productId}</h1>
                 <SimpleButton 
-                    onClick={handleOpenModal } 
+                    onClick={handleOpenModal} 
                     name="Add Features"
                     width="200px"
                 />

@@ -3,7 +3,8 @@ interface DateProps {
   label : string
   id: string,
   value: string,
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  disabled?: boolean
 }
 
 const DatePicker: React.FC<DateProps> = ({
@@ -11,7 +12,8 @@ const DatePicker: React.FC<DateProps> = ({
   label,
   id,
   value,
-  onChange
+  onChange,
+  disabled
 }) => {
   return (
     <div>
@@ -20,7 +22,8 @@ const DatePicker: React.FC<DateProps> = ({
         </label>
       <input
       required={required}
-      className="w-full rounded-lg border-[1.5px] border-accent-200 bg-transparent px-5 py-3 text-black outline-none transition focus:border-accent-400 active:border-accent-400 disabled:cursor-default disabled:bg-whiter"
+      disabled={disabled}
+      className="w-full rounded-lg border-[1.5px] border-accent-200 bg-transparent px-5 py-3 text-black outline-none transition focus:border-accent-400 active:border-accent-400 disabled:cursor-not-allowed disabled:bg-whiter"
         type="date"
         id={id}
         value={value}

@@ -12,8 +12,8 @@ class AxiosClient {
 
     GET = "GET";
     POST = "POST";
-    PUT = "put";
-    DELETE = "delete";
+    PUT = "PUT";
+    DELETE = "DELETE";
     PATCH = "patch";
     baseURL = 'http://localhost:3000/';
 
@@ -115,17 +115,23 @@ class AxiosClient {
         callBack: Function,
         progressCallBack: ProgressCallback,
         {
+            data,
             formData,
             params,
             queryParams,
             errorCallBack,
-            token,
+            addToken,
+            addFormEncode,
+            addMultipartForm
         }: {
-            formData?: FormData;
+            data?: Record<string, any>;
+            formData? : FormData;
             params?: Map<string, any>;
             queryParams?: Map<string, any>;
             errorCallBack?: Function;
-            token?: CancelToken;
+            addToken?: boolean;
+            addFormEncode? : boolean;
+            addMultipartForm?: boolean;
         }
     ){
         try {
@@ -136,10 +142,13 @@ class AxiosClient {
                 method: 'PUT',
                 params,
                 queryParams,
+                data,
                 formData,
                 errorCallBack,
                 progressCallBack,
-                // token,
+                addToken,
+                addFormEncode,
+                addMultipartForm,
             });
         } catch (error) {
             throw error;
@@ -153,11 +162,11 @@ class AxiosClient {
         {
             params,
             errorCallBack,
-            token,
+            addToken,
         }: {
             params?: Map<string, any>;
             errorCallBack?: Function;
-            token?: CancelToken;
+            addToken?: boolean;
         }
     ){
         try {
@@ -168,6 +177,7 @@ class AxiosClient {
                 method: 'DELETE',
                 params,
                 errorCallBack,
+                addToken
                 // token,
             });
         } catch (error) {
@@ -283,17 +293,32 @@ class AxiosClient {
                     );
                 }
             } else if(method == this.PUT){
-                if ((params != null && params.size != 0) || (queryParams != null && queryParams.size != 0) || formData != null) {
-                    response = await this._client!.put(
-                        this.getBaseUrl() + url,
-                        {
-                            formData : formData ,
-                            params : params,
-                            queryParams : queryParams,
-                            errorCallBack : errorCallBack,
-                            // token : token,
-                        }
-                    );
+                if (((params != null && params.size != 0)) || (queryParams != null && queryParams.size != 0) || (formData != null || data != null)) {
+                    console.log("inside put request")
+                    // response = await this._client!.put(
+                    //     this.getBaseUrl() + url,
+                    //     {
+                    //         formData : formData ,
+                    //         params : params,
+                    //         queryParams : queryParams,
+                    //         errorCallBack : errorCallBack,
+                    //         // token : token,
+                    //     }
+                    // );
+                    if(data != null){
+                        console.log("inside if data not null")
+                        response = await this._client!.put(
+                            this.getBaseUrl() + url,
+                            data,
+                        )
+                    }
+                    else if (formData != null) {
+                        console.log("inside if formdata not null")
+                        response = await this._client!.post(
+                            this.getBaseUrl() + url,
+                            formData,
+                        );
+                    }
                 } else {
                     response = await this._client!.put(
                         this.getBaseUrl() + url,
@@ -312,6 +337,7 @@ class AxiosClient {
                         }
                     );
                 } else {
+                    console.log("im inside delete else block")
                     response = await this._client!.delete(
                         this.getBaseUrl() + url,
                         {

@@ -100,7 +100,7 @@ function AddNewProduct() {
         success: (data: any) => {
           // console.log("successfull", data);
           setloading(false)
-          toast.success("Successfull", {
+          toast.success(data.msg, {
               position: "top-right",
               autoClose: 3000,
               hideProgressBar: false,

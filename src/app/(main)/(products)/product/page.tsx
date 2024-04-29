@@ -58,7 +58,7 @@ function AllProducts() {
               product={product}
               onClick={() => {
                 // console.log("this is the productId:" ,product.productId)
-                router.push(`/product/${product.productId}`);
+                router.push(`/product/${product.productId}/details`);
               }
               }
             />

@@ -101,21 +101,27 @@ class AxiosService{
         url : string,
         {
             formData,
+            data,
             params, 
             queryParams,
             success,
             failed,
             error,
-            token,
+            addToken,
+            addFormEncode,
+            addMultipartForm
         } :
         {
+            data? : Record<string, any>
             formData? : FormData,
             params? : Map<string, any>,
             queryParams? : Map<string, any>,
             success? :  Function,
             failed? : Function,
             error? : Function,
-            token? : CancelToken,
+            addToken?: boolean,
+            addFormEncode?: boolean,
+            addMultipartForm?: boolean,
         }
     ){
         AxiosClient._getInstance().put(
@@ -129,12 +135,16 @@ class AxiosService{
             },
             (): any => {},
             {
+                data : data,
                 formData : formData,
                 params : params,
                 queryParams : queryParams,
                 errorCallBack : (errorMessage : any) =>{
                     error!(errorMessage);
                 },
+                addToken,
+                addFormEncode : addFormEncode,
+                addMultipartForm : addMultipartForm,
             },
         );
     }
@@ -147,7 +157,7 @@ class AxiosService{
             success,
             failed,
             error,
-            token,
+            addToken,
         } :
         {
             params? : Map<string, any>,
@@ -155,7 +165,7 @@ class AxiosService{
             success? :  Function,
             failed? : Function,
             error? : Function,
-            token? : CancelToken,
+            addToken? : boolean,
         }
     ){
         AxiosClient._getInstance().delete(
@@ -172,7 +182,7 @@ class AxiosService{
                 errorCallBack : (errorMessage : any) =>{
                     error!(errorMessage);
                 },
-                token : token
+                addToken
             },
         );
     }

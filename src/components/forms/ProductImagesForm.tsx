@@ -69,12 +69,13 @@ function ProductImagesForm({ formData, setFormData, currentStep, setCurrentStep 
         ))}
       </div>
       {error && <p className='text-xs text-red-500 text-center'>{error}</p>}
-      <div className='flex gap-4 px-10 pb-4'>
+      <div className='flex justify-center gap-4 px-10 pb-4'>
       <SimpleButton
             name="previous"
             onClick={() =>{
               setCurrentStep(currentStep-1)
             }}
+            width='200px'
             />
           <SimpleButton
             name="next"
@@ -83,6 +84,7 @@ function ProductImagesForm({ formData, setFormData, currentStep, setCurrentStep 
                 setCurrentStep(currentStep+1)
               }
             }}
+            width='200px'
             />
       </div>
             

@@ -9,6 +9,7 @@ interface InputFieldsWithLabelProps {
   placeholder: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
 }
 
 export const InputFieldWithLabel: React.FC<InputFieldsWithLabelProps> = ({
@@ -19,6 +20,7 @@ export const InputFieldWithLabel: React.FC<InputFieldsWithLabelProps> = ({
   placeholder,
   value,
   onChange,
+  disabled
 }) => {
 
   return (
@@ -34,7 +36,8 @@ export const InputFieldWithLabel: React.FC<InputFieldsWithLabelProps> = ({
           id={id}
           value={value}
           onChange={onChange}
-          className="w-full rounded-lg border-[1.5px] border-accent-200 bg-transparent px-5 py-3 text-black outline-none transition focus:border-accent-400 active:border-accent-400 disabled:cursor-default disabled:bg-whiter"
+          disabled={disabled}
+          className="w-full rounded-lg border-[1.5px] border-accent-200 bg-transparent px-5 py-3 text-black outline-none transition focus:border-accent-400 active:border-accent-400 disabled:cursor-not-allowed disabled:bg-whiter"
         />
       </div>
 
